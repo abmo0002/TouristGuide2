@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Attraction List</title>
+    <link th:href="@{/main.css}" rel="stylesheet">
+    <style>
+        /* Additional CSS styles for table */
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background-color: #f2f2f2;
+            color: #333;
+        }
+
+        tr:hover {
+            background-color: #f5f5f5;
+        }
+
+        /* Alternate row color - Blue */
+        tr:nth-child(odd) {
+            background-color: #e6f7ff;
+        }
+
+        /* Alternate row color - Red */
+        tr:nth-child(even) {
+            background-color: #ffd6cc;
+        }
+    </style>
+</head>
+<body>
+<h1>Attraction List</h1>
+<table>
+    <thead>
+    <tr>
+        <th style="background-color: #ccc;">Name</th>
+        <th style="background-color: #ccc;">Description</th>
+    </tr>
+    </thead>
+    <tbody>
+    <!-- Loop through attractions and populate table rows -->
+    <tr th:each="attraction, row : ${attractions}" th:class="${row.odd} ? 'odd' : 'even'">
+        <td th:text="${attraction.name}">Attraction Name</td>
+        <td th:text="${attraction.description}">Attraction Description</td>
+    </tr>
+    <!-- Add the hardcoded attractions with alternating row color - Blue and Red -->
+    <tr style="background-color: #e6f7ff;">
+        <td>Buckingham Palace</td>
+        <td>The official residence of the British monarch in London, Buckingham Palace is an iconic symbol of the British monarchy.</td>
+    </tr>
+    <tr style="background-color: #ffd6cc;">
+        <td>Big Ben</td>
+        <td>An iconic landmark in London, Big Ben is a notable clock tower celebrated for its grandeur and historical significance.</td>
+    </tr>
+    <tr style="background-color: #e6f7ff;">
+        <td>The British Museum</td>
+        <td>The British Museum, situated in London, is a renowned cultural institution boasting an extensive collection of ancient artifacts and artworks.</td>
+    </tr>
+    <tr style="background-color: #ffd6cc;">
+        <td>Windsor Castle</td>
+        <td>Windsor Castle, a venerable fortress in England, holds the distinction of being the largest and oldest continually inhabited castle worldwide.</td>
+    </tr>
+    </tbody>
+</table>
+</body>
+</html>
