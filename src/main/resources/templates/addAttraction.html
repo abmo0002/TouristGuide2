@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Add attraction</title>
+    <link th:href="@{/main.css}" rel="stylesheet"/>
+</head>
+<body>
+<fieldset>
+    <legend>Add tourist attraction</legend>
+    <form action="/attractions/add" method="post" th:object="${attractionObject}">
+        <p>
+            <label for="nameOfAttraction">Name of attraction:</label>
+            <input id="nameOfAttraction" type="text" name="name" th:field="*{name}"/>
+        </p>
+        <p>
+            <label for="descriptionOfAttraction" >Description of attraction:</label>
+            <input id="descriptionOfAttraction" type="text" name="description" th:field="*{description}">
+        </p>
+        <p>
+            <label for="cityOfAttractionSelection">City:</label>
+            <select id="cityOfAttractionSelection" name="city" th:field="*{city}">
+                <option th:each="c : ${attractionCities}" th:value="${c}" th:text="${c}"></option>
+            </select>
+        </p>
+        <div th:each="tag : ${attractionTags}">
+            <input id="tagsAttraction" type="checkbox"  th:field="*{tags}" th:value="${tag}">
+            <label for="tagsAttraction" th:text="${tag}">Tags:</label><br />
+        </div>
+        <input type="submit" value="Add attraction">
+    </form>
+    <a th:href="@{'http://localhost:8080/attractions'}">
+        <input type="button" value="Return">
+    </a>
+</fieldset>
+</body>
+</html>
