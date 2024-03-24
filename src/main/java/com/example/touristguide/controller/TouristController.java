@@ -17,33 +17,33 @@ public class TouristController {
 
     @GetMapping("")
     public String getAllAttractions(Model model){
-        model.addAttribute("attractions", touristService.getAttractionList());
+        model.addAttribute("attractions", touristService.getAttraction());
         return "attractionList";
     }
 
     @GetMapping("/{name}/tags")
     public String tags(@PathVariable("name") String name, Model model){
-        model.addAttribute("tags", touristService.attractionTags(name));
+        model.addAttribute("tags", touristService.getAttractionTags(name));
         return "attractionTags";
     }
 
     @GetMapping("/add")
     public String addAttraction(Model model){
         model.addAttribute("attractionObject", new TouristAttraction());
-        model.addAttribute("attractionCities", touristService.getAttractionCities());
-        model.addAttribute("attractionTags", touristService.getTags());
+        model.addAttribute("attractionCities", touristService.getCitiesDB());
+        model.addAttribute("attractionTags", touristService.getTagsDB());
         return "addAttraction";
     }
 
     @PostMapping("/add")
     public String addedAttraction(@ModelAttribute TouristAttraction touristAttraction){
-        touristService.addAttraction(touristAttraction);
+        touristService.addAttractionDB(touristAttraction);
         return "redirect:/attractions";
     }
 
     @GetMapping("/{name}/delete")
     public String deleteAttraction(@PathVariable("name") String name){
-        touristService.deleteAttraction(name);
+        touristService.deleteAttractionDB(name);
         return "redirect:/attractions";
     }
 

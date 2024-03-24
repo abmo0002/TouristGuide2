@@ -46,7 +46,7 @@ public class TouristRepository {
         return null;
     }
 
-    public List<TouristAttraction> addTouristAttraction(TouristAttraction touristAttraction) {
+    public List<TouristAttraction> addAttraction(TouristAttraction touristAttraction) {
         attractionList.add(touristAttraction);
         return attractionList;
     }
